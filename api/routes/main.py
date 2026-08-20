@@ -6,6 +6,7 @@ from loguru import logger
 from pydantic import BaseModel
 
 from api.routes.activities import router as activities_router
+from api.routes.analytics import router as analytics_router
 from api.routes.agent_stream import router as agent_stream_router
 from api.routes.auth import router as auth_router
 from api.routes.billing import router as billing_router
@@ -47,6 +48,7 @@ router.include_router(contacts_router)
 router.include_router(companies_router)
 router.include_router(deals_router)
 router.include_router(activities_router)
+router.include_router(analytics_router)
 router.include_router(billing_router)
 
 router.include_router(telephony_router)

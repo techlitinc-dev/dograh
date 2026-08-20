@@ -243,6 +243,24 @@ export type ActivityResponse = {
 };
 
 /**
+ * ActivityTypePoint
+ */
+export type ActivityTypePoint = {
+    /**
+     * Date
+     */
+    date: string;
+    /**
+     * Type
+     */
+    type: string;
+    /**
+     * Count
+     */
+    count: number;
+};
+
+/**
  * AmbientNoiseConfigurationDefaults
  */
 export type AmbientNoiseConfigurationDefaults = {
@@ -297,6 +315,24 @@ export type AmbientNoiseUploadResponse = {
      * Storage Backend
      */
     storage_backend: string;
+};
+
+/**
+ * AnalyticsOverviewResponse
+ */
+export type AnalyticsOverviewResponse = {
+    /**
+     * Start
+     */
+    start: string;
+    /**
+     * End
+     */
+    end: string;
+    calls: CallsOverview;
+    contacts: ContactsOverview;
+    deals: DealsOverview;
+    tasks: TasksOverview;
 };
 
 /**
@@ -996,6 +1032,92 @@ export type CallDispositionCodes = {
  * CallType
  */
 export type CallType = 'inbound' | 'outbound';
+
+/**
+ * CallsAnalyticsResponse
+ */
+export type CallsAnalyticsResponse = {
+    /**
+     * Start
+     */
+    start: string;
+    /**
+     * End
+     */
+    end: string;
+    /**
+     * Daily
+     */
+    daily: Array<CallsDailyPoint>;
+    /**
+     * Dispositions
+     */
+    dispositions: Array<DispositionCount>;
+    /**
+     * Duration Buckets
+     */
+    duration_buckets: Array<DurationBucket>;
+};
+
+/**
+ * CallsDailyPoint
+ */
+export type CallsDailyPoint = {
+    /**
+     * Date
+     */
+    date: string;
+    /**
+     * Total
+     */
+    total: number;
+    /**
+     * Completed
+     */
+    completed: number;
+    /**
+     * Avg Duration Seconds
+     */
+    avg_duration_seconds: number;
+    /**
+     * Cost Usd
+     */
+    cost_usd: number;
+};
+
+/**
+ * CallsOverview
+ */
+export type CallsOverview = {
+    /**
+     * Total
+     */
+    total: number;
+    /**
+     * Completed
+     */
+    completed: number;
+    /**
+     * Connect Rate
+     */
+    connect_rate: number;
+    /**
+     * Avg Duration Seconds
+     */
+    avg_duration_seconds: number;
+    /**
+     * Total Cost Usd
+     */
+    total_cost_usd: number;
+    /**
+     * Inbound
+     */
+    inbound: number;
+    /**
+     * Outbound
+     */
+    outbound: number;
+};
 
 /**
  * Camb.ai
@@ -1890,6 +2012,20 @@ export type ContactResponse = {
 };
 
 /**
+ * ContactSourceCount
+ */
+export type ContactSourceCount = {
+    /**
+     * Source
+     */
+    source: string;
+    /**
+     * Count
+     */
+    count: number;
+};
+
+/**
  * ContactStatsResponse
  */
 export type ContactStatsResponse = {
@@ -1981,6 +2117,40 @@ export type ContactUpdate = {
      * Tag Names
      */
     tag_names?: Array<string> | null;
+};
+
+/**
+ * ContactsGrowthPoint
+ */
+export type ContactsGrowthPoint = {
+    /**
+     * Date
+     */
+    date: string;
+    /**
+     * Count
+     */
+    count: number;
+};
+
+/**
+ * ContactsOverview
+ */
+export type ContactsOverview = {
+    /**
+     * Total
+     */
+    total: number;
+    /**
+     * New In Range
+     */
+    new_in_range: number;
+    /**
+     * By Lifecycle Stage
+     */
+    by_lifecycle_stage: {
+        [key: string]: number;
+    };
 };
 
 /**
@@ -2408,6 +2578,40 @@ export type CredentialResponse = {
 };
 
 /**
+ * CrmAnalyticsResponse
+ */
+export type CrmAnalyticsResponse = {
+    /**
+     * Start
+     */
+    start: string;
+    /**
+     * End
+     */
+    end: string;
+    /**
+     * Contacts Growth
+     */
+    contacts_growth: Array<ContactsGrowthPoint>;
+    /**
+     * Contacts By Source
+     */
+    contacts_by_source: Array<ContactSourceCount>;
+    /**
+     * Deals By Stage
+     */
+    deals_by_stage: Array<DealStageCount>;
+    /**
+     * Deals Won Lost Per Day
+     */
+    deals_won_lost_per_day: Array<DealsWonLostPoint>;
+    /**
+     * Activities Per Day By Type
+     */
+    activities_per_day_by_type: Array<ActivityTypePoint>;
+};
+
+/**
  * CurrentUsageResponse
  */
 export type CurrentUsageResponse = {
@@ -2664,6 +2868,24 @@ export type DealResponse = {
 };
 
 /**
+ * DealStageCount
+ */
+export type DealStageCount = {
+    /**
+     * Stage
+     */
+    stage: string;
+    /**
+     * Count
+     */
+    count: number;
+    /**
+     * Total Value
+     */
+    total_value: number;
+};
+
+/**
  * DealUpdate
  */
 export type DealUpdate = {
@@ -2715,6 +2937,54 @@ export type DealUpdate = {
      * Lost Reason
      */
     lost_reason?: string | null;
+};
+
+/**
+ * DealsOverview
+ */
+export type DealsOverview = {
+    /**
+     * Open Count
+     */
+    open_count: number;
+    /**
+     * Open Value
+     */
+    open_value: number;
+    /**
+     * Won Count
+     */
+    won_count: number;
+    /**
+     * Won Value In Range
+     */
+    won_value_in_range: number;
+    /**
+     * Lost Count
+     */
+    lost_count: number;
+    /**
+     * Win Rate
+     */
+    win_rate: number;
+};
+
+/**
+ * DealsWonLostPoint
+ */
+export type DealsWonLostPoint = {
+    /**
+     * Date
+     */
+    date: string;
+    /**
+     * Won Value
+     */
+    won_value: number;
+    /**
+     * Lost Count
+     */
+    lost_count: number;
 };
 
 /**
@@ -2866,6 +3136,20 @@ export type DispositionCodesResponse = {
      * Disposition codes defined by Pipecat's EndTaskReason enum.
      */
     end_task_reason_codes: Array<string>;
+};
+
+/**
+ * DispositionCount
+ */
+export type DispositionCount = {
+    /**
+     * Disposition
+     */
+    disposition: string;
+    /**
+     * Count
+     */
+    count: number;
 };
 
 /**
@@ -3042,6 +3326,28 @@ export type DuplicateTemplateRequest = {
      * Workflow Name
      */
     workflow_name: string;
+};
+
+/**
+ * DurationBucket
+ */
+export type DurationBucket = {
+    /**
+     * Bucket
+     */
+    bucket: string;
+    /**
+     * Range Start
+     */
+    range_start: number;
+    /**
+     * Range End
+     */
+    range_end: number | null;
+    /**
+     * Count
+     */
+    count: number;
 };
 
 /**
@@ -6750,6 +7056,24 @@ export type TagResponse = {
 };
 
 /**
+ * TasksOverview
+ */
+export type TasksOverview = {
+    /**
+     * Open
+     */
+    open: number;
+    /**
+     * Completed In Range
+     */
+    completed_in_range: number;
+    /**
+     * Overdue
+     */
+    overdue: number;
+};
+
+/**
  * TelephonyConfigWarningsResponse
  *
  * Aggregated telephony-configuration warning counts for the user's org.
@@ -9950,6 +10274,162 @@ export type CompleteTaskApiV1ActivitiesTasksActivityIdCompletePostResponses = {
 };
 
 export type CompleteTaskApiV1ActivitiesTasksActivityIdCompletePostResponse = CompleteTaskApiV1ActivitiesTasksActivityIdCompletePostResponses[keyof CompleteTaskApiV1ActivitiesTasksActivityIdCompletePostResponses];
+
+export type GetAnalyticsOverviewApiV1OrganizationsAnalyticsOverviewGetData = {
+    body?: never;
+    headers?: {
+        /**
+         * Authorization
+         */
+        authorization?: string | null;
+        /**
+         * X-Api-Key
+         */
+        'X-API-Key'?: string | null;
+    };
+    path?: never;
+    query?: {
+        /**
+         * Start
+         *
+         * Range start date (YYYY-MM-DD, UTC)
+         */
+        start?: string | null;
+        /**
+         * End
+         *
+         * Range end date (YYYY-MM-DD, UTC)
+         */
+        end?: string | null;
+    };
+    url: '/api/v1/organizations/analytics/overview';
+};
+
+export type GetAnalyticsOverviewApiV1OrganizationsAnalyticsOverviewGetErrors = {
+    /**
+     * Not found
+     */
+    404: unknown;
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetAnalyticsOverviewApiV1OrganizationsAnalyticsOverviewGetError = GetAnalyticsOverviewApiV1OrganizationsAnalyticsOverviewGetErrors[keyof GetAnalyticsOverviewApiV1OrganizationsAnalyticsOverviewGetErrors];
+
+export type GetAnalyticsOverviewApiV1OrganizationsAnalyticsOverviewGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: AnalyticsOverviewResponse;
+};
+
+export type GetAnalyticsOverviewApiV1OrganizationsAnalyticsOverviewGetResponse = GetAnalyticsOverviewApiV1OrganizationsAnalyticsOverviewGetResponses[keyof GetAnalyticsOverviewApiV1OrganizationsAnalyticsOverviewGetResponses];
+
+export type GetCallsAnalyticsApiV1OrganizationsAnalyticsCallsGetData = {
+    body?: never;
+    headers?: {
+        /**
+         * Authorization
+         */
+        authorization?: string | null;
+        /**
+         * X-Api-Key
+         */
+        'X-API-Key'?: string | null;
+    };
+    path?: never;
+    query?: {
+        /**
+         * Start
+         *
+         * Range start date (YYYY-MM-DD, UTC)
+         */
+        start?: string | null;
+        /**
+         * End
+         *
+         * Range end date (YYYY-MM-DD, UTC)
+         */
+        end?: string | null;
+    };
+    url: '/api/v1/organizations/analytics/calls';
+};
+
+export type GetCallsAnalyticsApiV1OrganizationsAnalyticsCallsGetErrors = {
+    /**
+     * Not found
+     */
+    404: unknown;
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetCallsAnalyticsApiV1OrganizationsAnalyticsCallsGetError = GetCallsAnalyticsApiV1OrganizationsAnalyticsCallsGetErrors[keyof GetCallsAnalyticsApiV1OrganizationsAnalyticsCallsGetErrors];
+
+export type GetCallsAnalyticsApiV1OrganizationsAnalyticsCallsGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: CallsAnalyticsResponse;
+};
+
+export type GetCallsAnalyticsApiV1OrganizationsAnalyticsCallsGetResponse = GetCallsAnalyticsApiV1OrganizationsAnalyticsCallsGetResponses[keyof GetCallsAnalyticsApiV1OrganizationsAnalyticsCallsGetResponses];
+
+export type GetCrmAnalyticsApiV1OrganizationsAnalyticsCrmGetData = {
+    body?: never;
+    headers?: {
+        /**
+         * Authorization
+         */
+        authorization?: string | null;
+        /**
+         * X-Api-Key
+         */
+        'X-API-Key'?: string | null;
+    };
+    path?: never;
+    query?: {
+        /**
+         * Start
+         *
+         * Range start date (YYYY-MM-DD, UTC)
+         */
+        start?: string | null;
+        /**
+         * End
+         *
+         * Range end date (YYYY-MM-DD, UTC)
+         */
+        end?: string | null;
+    };
+    url: '/api/v1/organizations/analytics/crm';
+};
+
+export type GetCrmAnalyticsApiV1OrganizationsAnalyticsCrmGetErrors = {
+    /**
+     * Not found
+     */
+    404: unknown;
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetCrmAnalyticsApiV1OrganizationsAnalyticsCrmGetError = GetCrmAnalyticsApiV1OrganizationsAnalyticsCrmGetErrors[keyof GetCrmAnalyticsApiV1OrganizationsAnalyticsCrmGetErrors];
+
+export type GetCrmAnalyticsApiV1OrganizationsAnalyticsCrmGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: CrmAnalyticsResponse;
+};
+
+export type GetCrmAnalyticsApiV1OrganizationsAnalyticsCrmGetResponse = GetCrmAnalyticsApiV1OrganizationsAnalyticsCrmGetResponses[keyof GetCrmAnalyticsApiV1OrganizationsAnalyticsCrmGetResponses];
 
 export type GetPlansApiV1BillingPlansGetData = {
     body?: never;

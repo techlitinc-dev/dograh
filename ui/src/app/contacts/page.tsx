@@ -296,14 +296,17 @@ export default function ContactsPage() {
             .split(",")
             .map((s) => s.trim());
           return {
-            first_name,
-            last_name,
-            email,
-            phone,
+            first_name: first_name || null,
+            last_name: last_name || null,
+            email: email || null,
+            // Phone is optional on import; empty cells become null.
+            phone: phone || null,
             lifecycle_stage: stage_val || "lead",
           };
         })
-        .filter((item) => !!item.phone);
+        .filter(
+          (item) => item.first_name || item.last_name || item.email || item.phone
+        );
 
       const res = await bulkImportContactsApiV1ContactsImportPost({
         body: { contacts: items },

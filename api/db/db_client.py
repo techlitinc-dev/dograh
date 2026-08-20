@@ -1,4 +1,5 @@
 from api.db.agent_trigger_client import AgentTriggerClient
+from api.db.analytics_client import AnalyticsClient
 from api.db.api_key_client import APIKeyClient
 from api.db.campaign_client import CampaignClient
 from api.db.crm_client import CrmClient
@@ -37,6 +38,7 @@ class DBClient(
     CampaignClient,
     CrmClient,
     ReportsClient,
+    AnalyticsClient,
     APIKeyClient,
     EmbedTokenClient,
     AgentTriggerClient,
@@ -65,6 +67,7 @@ class DBClient(
     - CampaignClient: handles campaign operations
     - CrmClient: handles CRM contacts, companies, deals, activities and tags
     - ReportsClient: handles reports and analytics operations
+    - AnalyticsClient: handles org-scoped SQL aggregates for the CRM analytics dashboard
     - APIKeyClient: handles API key operations
     - EmbedTokenClient: handles embed token and session operations
     - AgentTriggerClient: handles agent trigger operations for API-based call triggering
