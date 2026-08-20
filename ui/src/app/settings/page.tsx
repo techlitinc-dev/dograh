@@ -1,0 +1,91 @@
+"use client";
+
+import { MCPSection } from "@/components/MCPSection";
+import { OrganizationPreferencesSection } from "@/components/OrganizationPreferencesSection";
+import { OrganizationSection } from "@/components/OrganizationSection";
+import { TeamMembersSection } from "@/components/TeamMembersSection";
+import { TelemetrySection } from "@/components/TelemetrySection";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+export default function SettingsPage() {
+  return (
+    <div className="flex justify-center py-12 px-4">
+      <div className="w-full max-w-2xl space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Platform Settings</h1>
+          <p className="text-muted-foreground">
+            Manage your platform configuration and integrations.
+          </p>
+        </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Organization</CardTitle>
+            <CardDescription>
+              Your workspace identity. Only the workspace owner can rename it.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <OrganizationSection />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Team members</CardTitle>
+            <CardDescription>
+              People with access to this workspace and their roles.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <TeamMembersSection />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Preferences</CardTitle>
+            <CardDescription>
+              Set organization-wide defaults such as the test phone number and
+              timezone.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <OrganizationPreferencesSection />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>MCP Server</CardTitle>
+            <CardDescription>
+              Let AI agents access your VoxCRM workspace and documentation via
+              the Model Context Protocol.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <MCPSection />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Telemetry</CardTitle>
+            <CardDescription>
+              Configure Langfuse tracing for your voice agent calls.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <TelemetrySection />
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
