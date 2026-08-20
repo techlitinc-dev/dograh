@@ -17,7 +17,7 @@ spots that need judgment (logos, colors, domain allowlists, image names).
 
 ---
 
-## Phase 0 — Positioning & Product Decisions
+## Phase 0 — Positioning & Product Decisions (DONE)
 
 Decide these before touching code; everything downstream depends on them.
 
@@ -39,7 +39,7 @@ Decide these before touching code; everything downstream depends on them.
 
 ---
 
-## Phase 1 — Rebranding
+## Phase 1 — Rebranding (DONE)
 
 ### 1.1 Frontend (`ui/`)
 
@@ -118,7 +118,7 @@ is scattered (links to `docs.dograh.com` / `app.dograh.com` appear in many pages
 
 ---
 
-## Phase 2 — Complete UI Redesign, Glassmorphism & Landing Page
+## Phase 2 — Complete UI Redesign, Glassmorphism & Landing Page (DONE)
 
 The rebrand swaps names and logos; this phase replaces the look and feel
 entirely — new layout, new design language, and a public marketing site. Stack
@@ -217,7 +217,7 @@ changes**. Priority order:
 
 ---
 
-## Phase 3 — CRM Data Model (Backend)
+## Phase 3 — CRM Data Model (Backend) (DONE)
 
 All models live in the single file `api/db/models.py`, with per-entity clients in
 `api/db/*_client.py` and Alembic migrations in `api/alembic/`. Follow that exact
